@@ -1,6 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react'
-
-import { Button } from './styles'
+import { CreateNews } from '../../../Modal/components/CreateNews'
 
 export function Header() {
   return (
@@ -12,7 +11,7 @@ export function Header() {
       <Text color="#835fe6" fontSize="2rem" fontWeight="bold" marginLeft={5}>
         Tech News
       </Text>
-      <Button>Cadastrar notícia</Button>
+      <CreateNews />
     </Flex>
   )
 }

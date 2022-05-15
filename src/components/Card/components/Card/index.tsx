@@ -1,18 +1,21 @@
 import {
-  border,
   Box,
   Center,
   Heading,
   Image,
   Spacer,
   Stack,
-  Text,
-  useColorModeValue
+  Text
 } from '@chakra-ui/react'
+import { Notice } from '../../../../types/types'
+import { getUtcDate } from '../../../../utils/date'
 
-export function Card() {
-  const IMAGE =
-    'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80'
+type CardProps = {
+  notice: Notice
+}
+
+export function Card({ notice }: CardProps) {
+  const { createdAt, image, title } = notice
 
   return (
     <Center py={12}>
@@ -23,10 +26,17 @@ export function Card() {
         w={'full'}
         boxShadow={'2xl'}
         rounded={'lg'}
+        backgroundColor={'#1c1f26'}
         pos={'relative'}
         zIndex={1}
-        border={'2px solid'}
+        border={'1px solid #835fe6'}
         cursor={'pointer'}
+        _hover={{
+          boxShadow: '5px 5px 5px #835fe6',
+          zIndex: 2,
+          transform: 'translateY(-2px)',
+          transition: 'all 0.2s ease-in-out'
+        }}
       >
         <Box
           rounded={'lg'}
@@ -43,21 +53,27 @@ export function Card() {
             height={230}
             width={282}
             objectFit={'cover'}
-            src={IMAGE}
+            src={image}
           />
         </Box>
-        <Stack pt={10} align={'center'}>
-          <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-            Brand
-          </Text>
+        <Stack pt={10} align={'center'} backgroundColor={'#1c1f26'}>
           <Heading
             fontSize={'2xl'}
             fontFamily={'body'}
             fontWeight={500}
             color={'gray.500'}
+            backgroundColor={'#1c1f26'}
           >
-            Nice Chair, pink
+            {title}
           </Heading>
+          <Text
+            color={'gray.500'}
+            fontSize={'sm'}
+            textTransform={'uppercase'}
+            backgroundColor={'#1c1f26'}
+          >
+            {getUtcDate(createdAt)}
+          </Text>
           <Spacer />
         </Stack>
       </Box>

@@ -7,7 +7,7 @@ export function Header() {
     <Flex
       justifyContent="space-between"
       width={'auto'}
-      borderBottom={'1px solid #835fe6'}
+      borderBottom={'2px solid #835fe6'}
     >
       <Text color="#835fe6" fontSize="2rem" fontWeight="bold" marginLeft={5}>
         Tech News

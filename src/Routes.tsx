@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom'
 
 import { Home } from './pages/Home'
-// import { Notice } from './pages/Notice'
+import { Notice } from './pages/Notice'
 
 /**
  * Enabled routes.
@@ -11,7 +11,7 @@ export function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/:notice-slug" element={<Notice />} /> */}
+        <Route path="/:id" element={<Notice />} />
       </Switch>
     </BrowserRouter>
   )

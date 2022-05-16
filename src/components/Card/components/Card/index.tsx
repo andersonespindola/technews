@@ -7,6 +7,7 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 import { Notice } from '../../../../types/types'
 import { getUtcDate } from '../../../../utils/date'
 
@@ -16,6 +17,11 @@ type CardProps = {
 
 export function Card({ notice }: CardProps) {
   const { createdAt, image, title } = notice
+
+  /**
+   * Hooks.
+   */
+  const navigate = useNavigate()
 
   return (
     <Center py={12}>
@@ -37,6 +43,7 @@ export function Card({ notice }: CardProps) {
           transform: 'translateY(-2px)',
           transition: 'all 0.2s ease-in-out'
         }}
+        onClick={() => navigate(`/${notice.id}`)}
       >
         <Box
           rounded={'lg'}

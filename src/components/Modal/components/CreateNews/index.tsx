@@ -10,12 +10,17 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Textarea,
   useDisclosure
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
+// @ts-ignore
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+// @ts-ignore
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+
 import { CustomButton } from './styles'
+import './styles.css'
 import { useNews } from '../../../../hooks/useNews'
 
 export function CreateNews() {
@@ -83,12 +88,16 @@ export function CreateNews() {
 
             <FormControl mt={4}>
               <FormLabel>Conteúdo</FormLabel>
-              <Textarea
-                isRequired
-                value={content}
-                onChange={event => handleChangeContent(event.target.value)}
-                placeholder="Conteúdo..."
-                size="sm"
+
+              <CKEditor
+                editor={ClassicEditor}
+                data="<p>Digite sua notícia aqui</p>"
+                // @ts-ignore
+                onChange={(_, editor) => {
+                  const data = editor.getData()
+                  console.log({ data })
+                  handleChangeContent(data)
+                }}
               />
             </FormControl>
           </ModalBody>

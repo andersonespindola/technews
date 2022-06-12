@@ -1,21 +1,14 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { NewsContext } from '../components/Context'
 import { Notice, NoticeForm } from '../types/types'
 
-const URL = 'https://technews-backend.herokuapp.com'
+export const URL = 'https://technews-backend.herokuapp.com'
 
 export const useNews = () => {
-  const [news, setNews] = useState<Notice[]>([])
   const [foundNew, setFoundNew] = useState<Notice>()
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`${URL}/`)
-      setNews(response.data)
-    } catch (error) {
-      console.log({ error })
-    }
-  }
+  const { fetchData } = useContext(NewsContext)
 
   const getNewsById = async (id: number | string) => {
     try {
@@ -44,5 +37,5 @@ export const useNews = () => {
     }
   }
 
-  return { news, getNewsById, createNews, foundNew, deleteNews, fetchData }
+  return { getNewsById, createNews, foundNew, deleteNews }
 }
